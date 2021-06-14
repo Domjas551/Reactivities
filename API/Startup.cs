@@ -40,9 +40,9 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers(OptionsBuilderConfigurationExtensions=>{
+            services.AddControllers(opt=>{
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                OptionsBuilderConfigurationExtensions.Filters.Add(new AuthorizeFilter(policy));
+                opt.Filters.Add(new AuthorizeFilter(policy));
             })
             .AddFluentValidation(config=>{
                 config.RegisterValidatorsFromAssemblyContaining<Create>();
